@@ -1,6 +1,14 @@
 
 import { initializeApp } from "firebase/app";
 
+import {
+    getAuth,
+    signInWithRedirect,
+    signInWithPopup,
+    GoogleAuthProvider,
+  } from 'firebase/auth';
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAJPiNk0cOdR4fcpevqO-F3s9UygqEKBNM",
   authDomain: "dv-clothing-db-ac43c.firebaseapp.com",
@@ -12,3 +20,13 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
+
+const provider = new GoogleAuthProvider();
+
+provider.setCustomParameters({
+    prompt: 'select_account',
+  });
+
+  export const auth = getAuth();
+  export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
